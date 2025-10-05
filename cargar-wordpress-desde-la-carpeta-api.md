@@ -18,9 +18,6 @@ Este tutorial explica cómo cargar el entorno de WordPress desde scripts o APIs 
        └── mi_api.php
 ```
 
-php
-Copiar código
-
 > Mantener los scripts separados ayuda a organizar tu proyecto y facilita el mantenimiento.
 
 ---
@@ -40,12 +37,12 @@ Ubicado en `/api/bootstrap.php`:
 // Cargar WordPress desde la raíz del sitio
 require_once $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php';
 Se utiliza $_SERVER['DOCUMENT_ROOT'] para apuntar automáticamente a la raíz del sitio, evitando rutas relativas como ../wp-load.php.
+```
 
 3️⃣ Usar bootstrap.php en tus scripts
 Ejemplo de /api/mi_api.php:
 
-php
-Copiar código
+```php
 <?php
 require_once __DIR__ . '/bootstrap.php';
 
@@ -67,6 +64,8 @@ if ($user) {
 // Devolver respuesta en formato JSON
 header('Content-Type: application/json');
 echo json_encode($respuesta);
+```
+
 4️⃣ Beneficios de este enfoque
 ✅ Centraliza la carga de WordPress en un solo archivo (bootstrap.php)
 
@@ -79,15 +78,15 @@ echo json_encode($respuesta);
 5️⃣ Resultado esperado
 Al acceder a tu API, por ejemplo:
 
-arduino
-Copiar código
+```php
 https://tusitio.com/api/mi_api.php
-Obtendrás una respuesta JSON como:
+```
 
-json
-Copiar código
+Obtendrás una respuesta JSON como:
+```php
 {
   "estatus": "ok",
   "mensaje": "El usuario nestor está registrado."
 }
+```
 Ahora puedes crear más scripts en /api/ que utilicen cualquier función de WordPress sin duplicar código.
