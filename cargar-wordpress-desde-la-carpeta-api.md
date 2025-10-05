@@ -6,15 +6,16 @@ Este tutorial explica cómo cargar el entorno de WordPress desde scripts o APIs 
 
 ## 1️⃣ Estructura de carpetas recomendada
 
-/public_html/```
-├── wp-admin/```
-├── wp-content/```
-├── wp-includes/```
-├── wp-load.php```
-├── index.php```
-└── api/```
-├── bootstrap.php```
-└── mi_api.php```
+```text
+/public_html/
+  ├── wp-admin/
+  ├── wp-content/
+  ├── wp-includes/
+  ├── wp-load.php
+  ├── index.php
+  └── api/
+       ├── bootstrap.php
+       └── mi_api.php
 
 php
 Copiar código
