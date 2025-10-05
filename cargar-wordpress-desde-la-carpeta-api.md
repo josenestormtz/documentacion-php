@@ -16,6 +16,7 @@ Este tutorial explica cómo cargar el entorno de WordPress desde scripts o APIs 
   └── api/
        ├── bootstrap.php
        └── mi_api.php
+```
 
 php
 Copiar código
