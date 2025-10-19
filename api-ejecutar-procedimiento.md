@@ -7,7 +7,6 @@ Este ejemplo muestra cómo llamar a un **procedimiento almacenado** en **MySQL**
 ### 📜 Ejemplo de código
 
 ```php
-<?php
 // 🔧 Variables de conexión
 $servidor = "localhost";
 $usuario = "root";
