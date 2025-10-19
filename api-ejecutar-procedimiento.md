@@ -115,8 +115,8 @@ $correo = "nestor@example.com";
 $activo = 1;
 
 // ⚙️ Llamada al procedimiento almacenado
-$sql = "CALL sp_registrar_usuario(?, ?, ?)";
-$stmt = $conn->prepare($sql);$result = $conn->query("CALL spObtenerEstados()");
+$sql = "CALL sp_registros()";
+$result = $conn->query($sql);
 
 $datos = [];
 
