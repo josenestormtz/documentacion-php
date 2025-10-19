@@ -49,3 +49,49 @@ echo json_encode([
 
 $stmt->close();
 $conn->close();
+```
+
+Si el procedimiento devuelve solo un registro con una columna (nombre), puedes utilizar el siguiente código:
+```php
+<?php
+// 🔧 Variables de conexión
+$servidor = "localhost";
+$usuario = "root";
+$contrasena = "";
+$base_datos = "mi_basedatos";
+
+// Conexión a la base de datos
+$conn = new mysqli($servidor, $usuario, $contrasena, $base_datos);
+if ($conn->connect_error) {
+    die(json_encode(['error' => 'Error de conexión: ' . $conn->connect_error]));
+}
+
+// Parámetro de ejemplo
+$id = 5;
+
+// 🔹 Llamar al procedimiento
+$sql = "CALL sp_obtener_usuario(?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+
+// 🔹 Obtener el resultado (una sola fila)
+$result = $stmt->get_result();
+$fila = $result->fetch_assoc(); // ← aquí obtenemos directamente la fila
+
+if ($fila) {
+    // Si existe el registro, accedemos directamente al valor
+    $nombre = $fila['nombre'];
+    echo json_encode([
+        'estatus' => 'ok',
+        'nombre' => $nombre
+    ]);
+} else {
+    echo json_encode([
+        'estatus' => 'sin_resultado'
+    ]);
+}
+
+$stmt->close();
+$conn->close();
+```
