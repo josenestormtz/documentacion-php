@@ -1,6 +1,6 @@
-## ⚙️ Ejecutar un procedimiento almacenado desde PHP
+## ⚙️ Ejecutar un procedimiento almacenado con 3 parámetros desde PHP
 
-Este fragmento muestra cómo llamar a un **procedimiento almacenado (Stored Procedure)** en **MySQL** usando **MySQLi** en PHP, y devolver los resultados en formato **JSON**.
+Este ejemplo muestra cómo llamar a un **procedimiento almacenado** en **MySQL** que recibe **tres parámetros** usando **MySQLi** en PHP, y devolver el resultado como **JSON**.
 
 ---
 
@@ -14,16 +14,20 @@ if ($conn->connect_error) {
     die(json_encode(['error' => 'Error de conexión: ' . $conn->connect_error]));
 }
 
-// Parámetro de entrada
-$id = 1; // Ejemplo: ID recibido por JSON o GET
+// Parámetros de entrada
+$nombre = "Néstor";
+$correo = "nestor@example.com";
+$activo = 1;
 
 // Llamada al procedimiento
-$sql = "CALL sp_get_usuario(?)";
+$sql = "CALL sp_registrar_usuario(?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id);
+
+// 's' = string, 'i' = integer
+$stmt->bind_param("ssi", $nombre, $correo, $activo);
 $stmt->execute();
 
-// Obtener los resultados
+// Obtener resultados
 $result = $stmt->get_result();
 $datos = [];
 
