@@ -18,10 +18,10 @@ Copia y pega el siguiente código dentro del archivo:
 ```php
 <?php
 // === LOG LOCAL PARA DIAGNÓSTICO ===
-$DKMAIL_LOG = __DIR__ . '/dkmail.log';
+$FILE_LOG = __DIR__ . '/dkmail.log';
 function dklog($msg) {
-  global $DKMAIL_LOG;
-  @error_log(date('c').' '.$msg.PHP_EOL, 3, $DKMAIL_LOG);
+  global $FILE_LOG;
+  @error_log(date('c').' '.$msg.PHP_EOL, 3, $FILE_LOG);
 }
 
 // === PRODUCCIÓN: NO IMPRIMIR ERRORES EN PANTALLA ===
