@@ -94,3 +94,41 @@ if ($fila) {
 $stmt->close();
 $conn->close();
 ```
+
+## En caso de que el procedimiento no tenga parámetros, se deberá usar la siguiente sintaxis:
+```php
+// 🔧 Variables de conexión
+$servidor = "localhost";
+$usuario = "root";
+$contrasena = "";
+$base_datos = "mi_basedatos";
+
+// Conexión a la base de datos
+$conn = new mysqli($servidor, $usuario, $contrasena, $base_datos);
+if ($conn->connect_error) {
+    die(json_encode(['error' => 'Error de conexión: ' . $conn->connect_error]));
+}
+
+// 📩 Parámetros de entrada
+$nombre = "Néstor";
+$correo = "nestor@example.com";
+$activo = 1;
+
+// ⚙️ Llamada al procedimiento almacenado
+$sql = "CALL sp_registrar_usuario(?, ?, ?)";
+$stmt = $conn->prepare($sql);$result = $conn->query("CALL spObtenerEstados()");
+
+$datos = [];
+
+while ($fila = $result->fetch_assoc()) {
+    $datos[] = $fila;
+}
+
+// 📤 Devolver respuesta en formato JSON
+echo json_encode([
+    'estatus' => count($datos) > 0 ? 'ok' : 'sin_resultado',
+    'resultado' => $datos
+]);
+
+$conn->close();
+```
