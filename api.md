@@ -17,12 +17,6 @@ Copia y pega el siguiente código dentro del archivo:
 
 ```php
 <?php
-// === LOG LOCAL PARA DIAGNÓSTICO ===
-$FILE_LOG = __DIR__ . '/dkmail.log';
-function dklog($msg) {
-  global $FILE_LOG;
-  @error_log(date('c').' '.$msg.PHP_EOL, 3, $FILE_LOG);
-}
 
 // === PRODUCCIÓN: NO IMPRIMIR ERRORES EN PANTALLA ===
 ini_set('display_errors', 0);
