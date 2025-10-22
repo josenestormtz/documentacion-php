@@ -34,9 +34,15 @@ header('Access-Control-Allow-Origin: *'); // Permite acceso desde cualquier orig
 
 // === RESPUESTA DE LA API ===
 $respuesta = [
-    'mensaje' => 'Hola Mundo 🌎',
-    'fecha' => date('Y-m-d H:i:s')
+    'mensaje' => 'OK'
 ];
+
+try {
+    
+} catch (Exception $e) {
+    // Código para manejar la excepción
+    echo $e->getMessage();
+}
 
 // === DEVOLVER COMO JSON ===
 echo json_encode($respuesta);
