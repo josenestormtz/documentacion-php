@@ -9,8 +9,6 @@ En su lugar, se leen desde el **flujo de entrada (input stream)** y se decodific
 
 ```php
 <?php
-header('Content-Type: application/json; charset=utf-8');
-
 // Leer el cuerpo de la solicitud (raw input)
 $json = file_get_contents('php://input');
 
